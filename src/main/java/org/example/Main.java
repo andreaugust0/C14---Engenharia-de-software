@@ -14,7 +14,7 @@ public class Main {
         try (Connection conn = DriverManager.getConnection(url, user, password);
              Statement stmt = conn.createStatement()) {
 
-            try (ResultSet rs = stmt.executeQuery("SELECT 'Oi SQL' AS msg")) {
+            try (ResultSet rs = stmt.executeQuery("SELECT 'Olá SQL' AS msg")) {
                 while (rs.next()) {
                     System.out.println(rs.getString("msg"));
                 }
