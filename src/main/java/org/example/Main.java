@@ -12,12 +12,21 @@ public class Main {
         String password = "root";
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT 'Oi SQL' AS msg")) {
+             Statement stmt = conn.createStatement()) {
 
-            while (rs.next()) {
-                System.out.println(rs.getString("msg"));
+            try (ResultSet rs = stmt.executeQuery("SELECT 'Oi SQL' AS msg")) {
+                while (rs.next()) {
+                    System.out.println(rs.getString("msg"));
+                }
             }
+
+            System.out.println("\nListando tabelas no schema 'tabela':");
+            try (ResultSet rsTables = stmt.executeQuery("SHOW TABLES")) {
+                while (rsTables.next()) {
+                    System.out.println(" - " + rsTables.getString(1));
+                }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
