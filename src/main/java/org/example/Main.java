@@ -12,12 +12,9 @@ public class Main {
         String password = "root";
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
-<<<<<<< HEAD
+
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT 'Olá SQL' AS msg")) {
-=======
-             Statement stmt = conn.createStatement()) {
->>>>>>> 38b51dadea5db35dc866dd369789b00518ed3735
 
             try (ResultSet rs = stmt.executeQuery("SELECT 'Oi SQL' AS msg")) {
                 while (rs.next()) {
